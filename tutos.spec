@@ -56,9 +56,9 @@ TUTOS zosta³ przet³umaczony równie¿ na jêzyk polski.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_tutosdir}/php/{auth,bugtracking/{help,templates},db,file/help,group/help,invoice/help,layout,ldap/help,localization,mailbox/help,note/{help,templates},rate/help,reminder/{help,templates},resource/help,url/help,watchlist/{help,templates},xml} \
-    $RPM_BUILD_ROOT%{_tutosdir}/html/{blue,help,nuke,red} \
-    $RPM_BUILD_ROOT%{_tutosdir}/{homepage,repository} \
-    $RPM_BUILD_ROOT{%{_tutosdir}/libs/{excel,fpdf/{font,tutorial}},/etc/httpd}
+	$RPM_BUILD_ROOT%{_tutosdir}/html/{blue,help,nuke,red} \
+	$RPM_BUILD_ROOT%{_tutosdir}/{homepage,repository} \
+	$RPM_BUILD_ROOT{%{_tutosdir}/libs/{excel,fpdf/{font,tutorial}},/etc/httpd}
 
 install php/{*.{php,pinc,p3},.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/php
 install php/auth/*.pinc			$RPM_BUILD_ROOT%{_tutosdir}/php/auth
@@ -119,31 +119,31 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 if [ -f /etc/httpd/httpd.conf ] && ! grep -q "^Include.*%{name}.conf" /etc/httpd/httpd.conf; then
-        echo "Include /etc/httpd/%{name}.conf" >> /etc/httpd/httpd.conf
-        if [ -f /var/lock/subsys/httpd ]; then
-                /usr/sbin/apachectl restart 1>&2
-        fi
-elif [ -d /etc/httpd/httpd.conf ]; then
-        ln -sf /etc/httpd/%{name}.conf /etc/httpd/httpd.conf/99_%{name}.conf
+	echo "Include /etc/httpd/%{name}.conf" >> /etc/httpd/httpd.conf
 	if [ -f /var/lock/subsys/httpd ]; then
-	        /usr/sbin/apachectl restart 1>&2
+		/usr/sbin/apachectl restart 1>&2
+	fi
+elif [ -d /etc/httpd/httpd.conf ]; then
+	ln -sf /etc/httpd/%{name}.conf /etc/httpd/httpd.conf/99_%{name}.conf
+	if [ -f /var/lock/subsys/httpd ]; then
+		/usr/sbin/apachectl restart 1>&2
 		echo "Do not forget tu setup tutos' database!"
 	fi
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-        umask 027
-        if [ -d /etc/httpd/httpd.conf ]; then
-            rm -f /etc/httpd/httpd.conf/99_%{name}.conf
-        else
-                grep -v "^Include.*%{name}.conf" /etc/httpd/httpd.conf > \
-                        /etc/httpd/httpd.conf.tmp
-                mv -f /etc/httpd/httpd.conf.tmp /etc/httpd/httpd.conf
-        fi
-        if [ -f /var/lock/subsys/httpd ]; then
-            /usr/sbin/apachectl restart 1>&2
-        fi
+	umask 027
+	if [ -d /etc/httpd/httpd.conf ]; then
+		rm -f /etc/httpd/httpd.conf/99_%{name}.conf
+	else
+		grep -v "^Include.*%{name}.conf" /etc/httpd/httpd.conf > \
+		/etc/httpd/httpd.conf.tmp
+		mv -f /etc/httpd/httpd.conf.tmp /etc/httpd/httpd.conf
+	fi
+	if [ -f /var/lock/subsys/httpd ]; then
+		/usr/sbin/apachectl restart 1>&2
+	fi
 fi
 
 %files
