@@ -1,4 +1,4 @@
---- tutos.org/apache.conf	Tue Sep 17 12:30:40 2002
+--- tutos.orig/apache.conf	Tue Sep 17 12:30:40 2002
 +++ tutos/apache.conf	Thu Oct 24 12:03:44 2002
 @@ -66,9 +66,9 @@
  #
@@ -12,7 +12,7 @@
      # Remove next line when already defined in httpd.conf
      # .pinc files must be interpreted by PHP to void password stealing !
      AddType application/x-httpd-php .pinc
---- tutos.org/php/config_default.pinc	Tue Sep 17 12:30:40 2002
+--- tutos.orig/php/config_default.pinc	Tue Sep 17 12:30:40 2002
 +++ tutos/php/config_default.pinc	Thu Oct 24 12:29:47 2002
 @@ -35,7 +35,7 @@
  #
@@ -23,48 +23,7 @@
  #
  # The DB Users password
  #
-@@ -86,7 +86,7 @@
- # This is the timezone where your database is running
- # For timezone names see end of this file.
- #
--$tutos[defaultTZ] = "Europe/Berlin";
-+$tutos[defaultTZ] = "Europe/Warsaw";
- #
- # Proxy Definition
- # if your server (that one running the scripts) needs
-@@ -220,18 +220,18 @@
- # Mode 1 = via sendmail
- # Mode 2 = via SMTP
- #
--$tutos[mailmode] = 2;
-+$tutos[mailmode] = 1;
- #
- # Mode 1
- # Where to find sendmail
- # Set this to something nonexistant to disable mailing
- #
--$tutos[sendmail]  = "/usr/lib/sendmail";
-+$tutos[sendmail]  = "/usr/sbin/sendmail";
- #
- # Mode 2
- # The name or IP of the SMTP server
- #
--$tutos[smtphost] = "192.168.1.10";
-+$tutos[smtphost] = "127.0.0.1";
- #
- # Fax features
- #
-@@ -304,8 +304,8 @@
- # Here you can add whatever you want (default is the first one)
- #
- $tutos[currencies] = array();
-+$tutos[currencies][] = "PLN";
- $tutos[currencies][] = "EUR";
--$tutos[currencies][] = "DM";
- $tutos[currencies][] = "US$";
- $tutos[currencies][] = "Lit";
- $tutos[currencies][] = "AUS$";
-@@ -559,7 +559,7 @@
+@@ -99,7 +99,7 @@
  # ATTENTION: On Windows Change this to something your system understands !!!
  #            Like : $tutos[sessionpath] = "c:\\Temp";
  # 
@@ -73,7 +32,7 @@
  #
  # Logo for the headline
  # (Change this to your company logo or whatever you like)
-@@ -568,10 +568,10 @@
+@@ -108,16 +108,16 @@
  # NOTE: a value in the database entry will override these settings !!
  #        call adminpage -> select DB Name -> Modify -> change -> save
  # 
@@ -84,7 +43,42 @@
 +$tutos[logo] = "html/tutos_small.gif";
 +#$tutos[logo] = "http://sourceforge.net/sflogo.php?group_id=8047&amp;type=1";
 +$tutos[logolink] = "html/copyright.html";
-+#tutos[logolink] = "http://www.tutos.org";
++#$tutos[logolink] = "http://www.tutos.org";
  #
- # The TUTOS Version number
+ # The default timezone
+ # This is the timezone where your database is running
+ # For timezone names see near the end of this file.
  #
+-$tutos[defaultTZ] = "Europe/Berlin";
++$tutos[defaultTZ] = "Europe/Warsaw";
+ #
+ # Proxy Definition
+ #
+@@ -255,7 +255,7 @@
+ # Mode 1 = via sendmail
+ # Mode 2 = via SMTP
+ #
+-$tutos[mailmode] = 2;
++$tutos[mailmode] = 1;
+ # 
+ # for auth use pop before smtp
+ # (only useful in mailmode 2)
+@@ -269,7 +269,7 @@
+ # Where to find sendmail
+ # Set this to something nonexistant to disable mailing
+ #
+-$tutos[sendmail]  = "/usr/lib/sendmail";
++$tutos[sendmail]  = "/usr/sbin/sendmail";
+ #
+ # Mode 2
+ # The name or IP of the SMTP server
+@@ -358,8 +358,8 @@
+ # Here you can add whatever you want (default is the first one)
+ #
+ $tutos[currencies] = array();
++$tutos[currencies][] = "PLN";
+ $tutos[currencies][] = "EUR";
+-$tutos[currencies][] = "DM";
+ $tutos[currencies][] = "US$";
+ $tutos[currencies][] = "Lit";
+ $tutos[currencies][] = "AUS$";

@@ -1,14 +1,13 @@
-%define		_beta	beta.20030205
 Summary:	The Ultimate Team Organisation Software
 Summary(pl):	TUTOS - oprogramowanie do organizacji pracy grupowej
 Name:		tutos
-Version:	1.1
-Release:	0.%{_beta}.1
+Version:	1.1.20030715
+Release:	0.1
 License:	GPL v2+
 Group:		Applications/WWW
 Vendor:		Gero Kohnert <gokohnert@users.sourceforge.net>
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-php-%{version}%{_beta}.tar.bz2
-# Source0-md5:	92f1c0e7edd0d5257997f8e5336594af
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-php-%{version}.tar.bz2
+# Source0-md5:	03c13ad482a398539ce53f7037dbfa30
 Patch0:		%{name}-config.patch
 URL:		http://www.tutos.org/
 PreReq:		apache
