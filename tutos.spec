@@ -62,6 +62,27 @@ install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/httpd/tutos.conf
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+if [ -f %{_sysconfdir}/httpd/httpd.conf ] && \
+    ! grep -q "^Include.*/tutos.conf" %{_sysconfdir}/httpd/httpd.conf; then
+	echo "Include /etc/httpd/tutos.conf" >> %{_sysconfdir}/httpd/httpd.conf
+fi
+if [ -f /var/lock/subsys/httpd ]; then
+	/etc/rc.d/init.d/httpd restart 1>&2
+else
+	echo "Run \"/etc/rc.d/init.d/httpd start\" to start apache http daemon."
+fi
+
+%preun
+if [ "$1" = "0" ]; then
+	grep -E -v "^Include.*tutos.conf" %{_sysconfdir}/httpd/httpd.conf > \
+		{_sysconfdir}/httpd/httpd.conf.tmp
+	mv -f %{_sysconfdir}/httpd/httpd.conf.tmp %%{_sysconfdir}/httpd/httpd.conf
+	if [ -f /var/lock/subsys/httpd ]; then
+		/etc/rc.d/init.d/httpd restart 1>&2
+	fi
+fi
+
 %files
 %defattr(644,root,root,755)
 %doc README ToDo ChangeLog
