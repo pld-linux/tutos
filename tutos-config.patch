@@ -1,20 +1,20 @@
 --- tutos.org/apache.conf	Tue Sep 17 12:30:40 2002
 +++ tutos/apache.conf	Thu Oct 24 12:03:44 2002
-@@ -76,9 +76,9 @@
+@@ -66,9 +66,9 @@
  #
  # make tutos an aliased Directory
  #
 -Alias /tutos "/usr/share/tutos"
-+Alias /tutos "/home/services/httpd/html/services/tutos"
++Alias /tutos "/home/services/httpd/html/tutos"
  
 -<Directory "/usr/share/tutos">
-+<Directory "/home/services/httpd/html/services/tutos">
-     # Action cocoon /tutos/servlets/org.apache.cocoon.Cocoon
-     # AddHandler cocoon xml
++<Directory "/home/services/httpd/html/tutos">
      # Remove next line when already defined in httpd.conf
+     # .pinc files must be interpreted by PHP to void password stealing !
+     AddType application/x-httpd-php .pinc
 --- tutos.org/php/config_default.pinc	Tue Sep 17 12:30:40 2002
 +++ tutos/php/config_default.pinc	Thu Oct 24 12:29:47 2002
-@@ -37,7 +37,7 @@
+@@ -35,7 +35,7 @@
  #
  # The Database user who runs TUTOS
  #
@@ -23,16 +23,16 @@
  #
  # The DB Users password
  #
-@@ -88,7 +88,7 @@
+@@ -86,7 +86,7 @@
  # This is the timezone where your database is running
  # For timezone names see end of this file.
  #
 -$tutos[defaultTZ] = "Europe/Berlin";
 +$tutos[defaultTZ] = "Europe/Warsaw";
  #
- # Maximum number of rows to show in overviews
- # 15 (default)
-@@ -206,18 +206,18 @@
+ # Proxy Definition
+ # if your server (that one running the scripts) needs
+@@ -220,18 +220,18 @@
  # Mode 1 = via sendmail
  # Mode 2 = via SMTP
  #
@@ -54,7 +54,7 @@
  #
  # Fax features
  #
-@@ -284,8 +284,8 @@
+@@ -304,8 +304,8 @@
  # Here you can add whatever you want (default is the first one)
  #
  $tutos[currencies] = array();
@@ -64,18 +64,18 @@
  $tutos[currencies][] = "US$";
  $tutos[currencies][] = "Lit";
  $tutos[currencies][] = "AUS$";
-@@ -512,7 +512,7 @@
- #            Like : $tutos[sessionpath] = "c:\Temp";
+@@ -559,7 +559,7 @@
+ # ATTENTION: On Windows Change this to something your system understands !!!
+ #            Like : $tutos[sessionpath] = "c:\\Temp";
  # 
- #
 -$tutos[sessionpath] = "/tmp";
 +$tutos[sessionpath] = "/var/run/php";
  #
  # Logo for the headline
  # (Change this to your company logo or whatever you like)
-@@ -520,10 +520,10 @@
- # logo and logolink are either relative to [tutosdir] or should start with "http:"
+@@ -568,10 +568,10 @@
  # NOTE: a value in the database entry will override these settings !!
+ #        call adminpage -> select DB Name -> Modify -> change -> save
  # 
 -#$tutos[logo] = "html/tutos_small.gif";
 -$tutos[logo] = "http://sourceforge.net/sflogo.php?group_id=8047&amp;type=1";
