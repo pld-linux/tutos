@@ -8,6 +8,7 @@ License:	GPL v2+
 Group:		Applications/WWW
 Vendor:		Gero Kohnert <gokohnert@users.sourceforge.net>
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-php-%{version}%{_beta}.tar.bz2
+# Source0-md5:	92f1c0e7edd0d5257997f8e5336594af
 Patch0:		%{name}-config.patch
 URL:		http://www.tutos.org/
 PreReq:		apache
