@@ -5,12 +5,14 @@
 Summary:	The Ultimate Team Organisation Software
 Summary(pl):	TUTOS - oprogramowanie do organizacji pracy grupowej
 Name:		tutos
-Version:	1.1.20040414
-Release:	2
+%define         _realname       TUTOS
+Version:	1.2.20040906
+Release:	0.1
 License:	GPL v2+
 Group:		Applications/WWW
-Source0:	http://dl.sourceforge.net/tutos/%{name}-php-%{version}.tar.bz2
-# Source0-md5:	b848ecdbcd7de75e8600bf365e20ff6d
+Source0:	http://dl.sourceforge.net/tutos/%{_realname}-php-%{version}.tar.bz2
+# Source0-md5:	1b4ad35195e30d26afcfca277d480180
+# Source0-size:	678564
 Patch0:		%{name}-config.patch
 URL:		http://www.tutos.org/
 PreReq:		apache
@@ -53,7 +55,7 @@ TUTOS zosta³ przet³umaczony równie¿ na jêzyk polski.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
+#%patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
