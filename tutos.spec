@@ -9,7 +9,6 @@ Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/tutos/%{_realname}-php-%{version}.tar.bz2
 # Source0-md5:	1b4ad35195e30d26afcfca277d480180
 # Source0-size:	678564
-Source1:        %{name}.conf
 Patch0:		%{name}-config.patch
 URL:		http://www.tutos.org/
 PreReq:		apache
@@ -113,7 +112,7 @@ install libs/fpdf/tutorial/logo.png	$RPM_BUILD_ROOT%{_tutosdir}/libs/fpdf/tutori
 
 install *.sh $RPM_BUILD_ROOT%{_tutosdir}
 
-install apache.conf $RPM_BUILD_ROOT/etc/httpd/tutos.conf
+install apache.conf $RPM_BUILD_ROOT/etc/httpd/%{name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -150,7 +149,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog README README.ldap README.nuke ToDo
-%config(noreplace) %verify(not size mtime md5) /etc/httpd/tutos.conf
+%config(noreplace) %verify(not size mtime md5) /etc/httpd/%{name}.conf
 %dir %{_tutosdir}
 %attr(755,root,root) %{_tutosdir}/*.sh
 %attr(775,root,http) %{_tutosdir}/repository
