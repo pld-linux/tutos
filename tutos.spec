@@ -8,7 +8,6 @@ License:	GPL v2+
 Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/tutos/%{_realname}-php-%{version}.tar.bz2
 # Source0-md5:	1b4ad35195e30d26afcfca277d480180
-# Source0-size:	678564
 Patch0:		%{name}-config.patch
 URL:		http://www.tutos.org/
 PreReq:		apache
