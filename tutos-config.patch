@@ -1,0 +1,90 @@
+--- tutos.org/apache.conf	Tue Sep 17 12:30:40 2002
++++ tutos/apache.conf	Thu Oct 24 12:03:44 2002
+@@ -76,9 +76,9 @@
+ #
+ # make tutos an aliased Directory
+ #
+-Alias /tutos "/var/www/tutos"
++Alias /tutos "/home/httpd/html/tutos"
+ 
+-<Directory "/var/www/tutos">
++<Directory "/home/httpd/html/tutos">
+     # Action cocoon /tutos/servlets/org.apache.cocoon.Cocoon
+     # AddHandler cocoon xml
+     # Remove next line when already defined in httpd.conf
+--- tutos.org/php/config_default.pinc	Tue Sep 17 12:30:40 2002
++++ tutos/php/config_default.pinc	Thu Oct 24 12:29:47 2002
+@@ -37,7 +37,7 @@
+ #
+ # The Database user who runs TUTOS
+ #
+-$tutos[dbuser][0]   = "wwwrun";
++$tutos[dbuser][0]   = "tutos";
+ #
+ # The DB Users password
+ #
+@@ -88,7 +88,7 @@
+ # This is the timezone where your database is running
+ # For timezone names see end of this file.
+ #
+-$tutos[defaultTZ] = "Europe/Berlin";
++$tutos[defaultTZ] = "Europe/Warsaw";
+ #
+ # Maximum number of rows to show in overviews
+ # 15 (default)
+@@ -206,18 +206,18 @@
+ # Mode 1 = via sendmail
+ # Mode 2 = via SMTP
+ #
+-$tutos[mailmode] = 2;
++$tutos[mailmode] = 1;
+ #
+ # Mode 1
+ # Where to find sendmail
+ # Set this to something nonexistant to disable mailing
+ #
+-$tutos[sendmail]  = "/usr/lib/sendmail";
++$tutos[sendmail]  = "/usr/sbin/sendmail";
+ #
+ # Mode 2
+ # The name or IP of the SMTP server
+ #
+-$tutos[smtphost] = "192.168.1.10";
++#$tutos[smtphost] = "192.168.1.10";
+ #
+ # Fax features
+ #
+@@ -284,8 +284,8 @@
+ # Here you can add whatever you want (default is the first one)
+ #
+ $tutos[currencies] = array();
++$tutos[currencies][] = "PLN";
+ $tutos[currencies][] = "EUR";
+-$tutos[currencies][] = "DM";
+ $tutos[currencies][] = "US$";
+ $tutos[currencies][] = "Lit";
+ $tutos[currencies][] = "AUS$";
+@@ -512,7 +512,7 @@
+ #            Like : $tutos[sessionpath] = "c:\Temp";
+ # 
+ #
+-$tutos[sessionpath] = "/tmp";
++$tutos[sessionpath] = "/var/run/php";
+ #
+ # Logo for the headline
+ # (Change this to your company logo or whatever you like)
+@@ -520,10 +520,10 @@
+ # logo and logolink are either relative to [tutosdir] or should start with "http:"
+ # NOTE: a value in the database entry will override these settings !!
+ # 
+-#$tutos[logo] = "html/tutos_small.gif";
+-$tutos[logo] = "http://sourceforge.net/sflogo.php?group_id=8047&amp;type=1";
+-#$tutos[logolink] = "html/copyright.html";
+-$tutos[logolink] = "http://www.tutos.org";
++$tutos[logo] = "html/tutos_small.gif";
++#$tutos[logo] = "http://sourceforge.net/sflogo.php?group_id=8047&amp;type=1";
++$tutos[logolink] = "html/copyright.html";
++#tutos[logolink] = "http://www.tutos.org";
+ #
+ # The TUTOS Version number
+ #
