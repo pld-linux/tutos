@@ -4,10 +4,10 @@
  #
  # make tutos an aliased Directory
  #
--Alias /tutos "/var/www/tutos"
+-Alias /tutos "/usr/share/tutos"
 +Alias /tutos "/home/httpd/html/tutos"
  
--<Directory "/var/www/tutos">
+-<Directory "/usr/share/tutos">
 +<Directory "/home/httpd/html/tutos">
      # Action cocoon /tutos/servlets/org.apache.cocoon.Cocoon
      # AddHandler cocoon xml
