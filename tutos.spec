@@ -1,23 +1,26 @@
 Summary:	The Ultimate Team Organisation Software
+Summary(pl):	TUTOS - oprogramowanie do organizacji pracy grupowej
 Name:		tutos
 Version:	1.0.20020917
 Release:	1
 License:	GPL v2+
 Group:		Applications/Databases/Interfaces
+Vendor:		Gero Kohnert <gokohnert@users.sourceforge.net>
 Source0:	http://download.sourceforge.net/%{name}/%{name}-php-%{version}.tar.bz2
 Patch0:		%{name}-config.patch
 URL:		http://www.tutos.org/
-Vendor:		Gero Kohnert <gokohnert@users.sourceforge.net>
-Requires:	apache
+PreReq:		apache
+Requires(post,preun):	grep
+Requires(preun):	fileutils
 Requires:	php-pcre
-Buildarch:	noarch
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_tutosdir	/home/httpd/html/tutos
 
 %description
 TUTOS is a webbased groupware or ERP/CRM suite that provides the users
-with
+with:
 - personal and group calendars
 - addressbook
 - projectmanagement
@@ -27,6 +30,20 @@ with
 - notes
 - installation management
 - mail interface
+
+%description -l pl
+TUTOS (The Ultimate Team Organisation Software) jest opartym na WWW
+oprogramowaniem do pracy grupowej (ERP/CRM), udostêpniaj±cym
+u¿ytkownikom:
+- osobiste i grupowe kalendarze
+- ksi±¿kê adresow±
+- zarz±dzanie projektami
+- zarz±dzanie plikami
+- zarz±dzanie zadaniami
+- ¶ledzenie b³êdów
+- notatki
+- zarz±dzanie instalacj±
+- interfejs do poczty elektronicznej.
 
 %prep
 %setup -q -n %{name}
@@ -76,7 +93,7 @@ fi
 %preun
 if [ "$1" = "0" ]; then
 	grep -E -v "^Include.*tutos.conf" %{_sysconfdir}/httpd/httpd.conf > \
-		{_sysconfdir}/httpd/httpd.conf.tmp
+		%{_sysconfdir}/httpd/httpd.conf.tmp
 	mv -f %{_sysconfdir}/httpd/httpd.conf.tmp %%{_sysconfdir}/httpd/httpd.conf
 	if [ -f /var/lock/subsys/httpd ]; then
 		/etc/rc.d/init.d/httpd restart 1>&2
