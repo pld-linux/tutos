@@ -72,11 +72,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_tutosdir}/html
 %{_tutosdir}/homepage
 %{_tutosdir}/documentation
-#%{_tutosdir}/php/group
-#%{_tutosdir}/php/invoice
-#%{_tutosdir}/php/note
-#%{_tutosdir}/php/resource
-#%{_tutosdir}/php/watchlist
 %dir %{_tutosdir}/php
 %{_tutosdir}/php/.htaccess
 %{_tutosdir}/php/[^c]*
