@@ -5,7 +5,7 @@
 Summary:	The Ultimate Team Organisation Software
 Summary(pl):	TUTOS - oprogramowanie do organizacji pracy grupowej
 Name:		tutos
-%define         _realname       TUTOS
+%define		_realname	TUTOS
 Version:	1.2.20040906
 Release:	0.1
 License:	GPL v2+
