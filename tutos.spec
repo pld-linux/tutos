@@ -1,13 +1,11 @@
 # TODO:
-# - move it to /usr/share
-# - SECURITY: http://securitytracker.com/alerts/2004/Sep/1011363.html
 # - fix pre/post to conform apache2
 Summary:	The Ultimate Team Organisation Software
 Summary(pl):	TUTOS - oprogramowanie do organizacji pracy grupowej
 Name:		tutos
 %define		_realname	TUTOS
 Version:	1.2.20040906
-Release:	0.1
+Release:	0.2
 License:	GPL v2+
 Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/tutos/%{_realname}-php-%{version}.tar.bz2
@@ -22,7 +20,7 @@ Requires:	php-pcre
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_tutosdir	/home/services/httpd/html/tutos
+%define		_tutosdir	%{_datadir}/%{name}
 
 %description
 TUTOS is a webbased groupware or ERP/CRM suite that provides the users
@@ -59,34 +57,60 @@ TUTOS zosta³ przet³umaczony równie¿ na jêzyk polski.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_tutosdir}/{php/{auth,db,file,group,invoice,layout,ldap,localization,mailbox,note,resource,url,watchlist},html/{help,blue,red},homepage,documentation/{user_manual,admin_manual,book0},repository},/etc/httpd}
+install -d $RPM_BUILD_ROOT%{_tutosdir}/php/{auth,bugtracking/{help,templates},db,file/help,group/help,invoice/help,layout,ldap/help,localization,mailbox/help,note/{help,templates},rate/help,reminder/{help,templates},resource/help,url/help,watchlist/{help,templates},xml} \
+    $RPM_BUILD_ROOT%{_tutosdir}/html/{blue,help,nuke,red} \
+    $RPM_BUILD_ROOT%{_tutosdir}/{homepage,repository} \
+    $RPM_BUILD_ROOT{%{_tutosdir}/libs/{excel,fpdf/{font,tutorial}},/etc/httpd}
 
 install php/{*.{php,pinc,p3},.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/php
 install php/auth/*.pinc			$RPM_BUILD_ROOT%{_tutosdir}/php/auth
+install php/bugtracking/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/bugtracking
+install php/bugtracking/help/{*.html,.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/php/bugtracking/help
+install php/bugtracking/templates/{*.proto.*,.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/php/bugtracking/templates
 install php/db/*.pinc			$RPM_BUILD_ROOT%{_tutosdir}/php/db
-install php/file/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/file
-install php/group/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/group
-install php/invoice/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/invoice
+install php/file/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/file
+install php/file/help/{*.html,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/file/help
+install php/group/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/group
+install php/group/help/{*.html,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/group/help
+install php/invoice/{*.{php,pinc,p3},.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/php/invoice
+install php/invoice/help/{*.html,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/invoice/help
 install php/layout/*.pinc		$RPM_BUILD_ROOT%{_tutosdir}/php/layout
-install php/ldap/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/ldap
+install php/ldap/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/ldap
+install php/ldap/help/.htaccess		$RPM_BUILD_ROOT%{_tutosdir}/php/ldap/help
 install php/localization/*.{pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/localization
-install php/mailbox/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/mailbox
-install php/note/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/note
-install php/resource/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/resource
-install php/url/*.{php,pinc,p3}		$RPM_BUILD_ROOT%{_tutosdir}/php/url
-install php/watchlist/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/watchlist
-install php/config_default.pinc		$RPM_BUILD_ROOT%{_tutosdir}/php/config.pinc
+install php/mailbox/{*.{php,pinc,p3},.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/php/mailbox
+install php/mailbox/help/{*.html,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/mailbox/help
+install php/note/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/note
+install php/note/help/{*.html,.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/php/note/help
+install php/note/templates/{*.proto.*,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/note/templates
+install php/rate/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/rate
+install php/rate/help/{*.html,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/rate/help
+install php/reminder/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/reminder
+install php/reminder/help/{*.html,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/reminder/help
+install php/reminder/templates/{*.proto.*,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/reminder/templates
+install php/resource/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/resource
+install php/resource/help/{*.html,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/resource/help
+install php/url/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/url
+install php/url/help/{*.html,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/url/help
+install php/watchlist/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/watchlist
+install php/watchlist/help/{*.html,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/watchlist/help
+install php/watchlist/templates/{*.proto.*,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/watchlist/templates
+install php/xml/*.{php,pinc,p3}		$RPM_BUILD_ROOT%{_tutosdir}/php/xml
 
-install html/{*.{html,proto.*,png,gif,css},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/html
+install php/config_default.pinc		$RPM_BUILD_ROOT%{_tutosdir}/php/config.php
+
+install html/{*.{html,proto.*,png,gif,css,ico},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/html
 install html/help/{*.html,.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/html/help
 install html/blue/*.{gif,png}		$RPM_BUILD_ROOT%{_tutosdir}/html/blue
-install html/red/*.gif			$RPM_BUILD_ROOT%{_tutosdir}/html/red
+install html/nuke/*.{gif,png}		$RPM_BUILD_ROOT%{_tutosdir}/html/nuke
+install html/red/*.{gif,png}		$RPM_BUILD_ROOT%{_tutosdir}/html/red
 
 install homepage/{*.html,.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/homepage
 
-install documentation/user_manual/*.png	$RPM_BUILD_ROOT%{_tutosdir}/documentation/user_manual
-install documentation/admin_manual/*.png $RPM_BUILD_ROOT%{_tutosdir}/documentation/admin_manual
-install documentation/book0/*.html	$RPM_BUILD_ROOT%{_tutosdir}/documentation/book0
+install libs/excel/*.php		$RPM_BUILD_ROOT%{_tutosdir}/libs/excel
+install libs/fpdf/fpdf.php		$RPM_BUILD_ROOT%{_tutosdir}/libs/fpdf
+install libs/fpdf/font/*.php		$RPM_BUILD_ROOT%{_tutosdir}/libs/fpdf/font
+install libs/fpdf/tutorial/logo.png	$RPM_BUILD_ROOT%{_tutosdir}/libs/fpdf/tutorial
 
 install *.sh $RPM_BUILD_ROOT%{_tutosdir}
 
@@ -121,18 +145,18 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README README.ldap ToDo ChangeLog
+%doc ChangeLog README README.ldap README.nuke ToDo
 %config(noreplace) %verify(not size mtime md5) /etc/httpd/tutos.conf
 %dir %{_tutosdir}
 %attr(755,root,root) %{_tutosdir}/*.sh
 %attr(775,root,http) %{_tutosdir}/repository
 %{_tutosdir}/html
 %{_tutosdir}/homepage
-%{_tutosdir}/documentation
+%{_tutosdir}/libs
 %dir %{_tutosdir}/php
 %{_tutosdir}/php/.htaccess
 %{_tutosdir}/php/[!c]*
 %{_tutosdir}/php/c[!o]*
 %{_tutosdir}/php/co[!n]*
 %{_tutosdir}/php/config_default.pinc
-%attr(640,root,http) %config(noreplace) %verify(not size mtime md5) %{_tutosdir}/php/config.pinc
+%attr(640,root,http) %config(noreplace) %verify(not size mtime md5) %{_tutosdir}/php/config.php
