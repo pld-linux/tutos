@@ -5,10 +5,10 @@
  # make tutos an aliased Directory
  #
 -Alias /tutos "/usr/share/tutos"
-+Alias /tutos "/home/httpd/html/tutos"
++Alias /tutos "/home/services/httpd/html/services/tutos"
  
 -<Directory "/usr/share/tutos">
-+<Directory "/home/httpd/html/tutos">
++<Directory "/home/services/httpd/html/services/tutos">
      # Action cocoon /tutos/servlets/org.apache.cocoon.Cocoon
      # AddHandler cocoon xml
      # Remove next line when already defined in httpd.conf
@@ -50,7 +50,7 @@
  # The name or IP of the SMTP server
  #
 -$tutos[smtphost] = "192.168.1.10";
-+#$tutos[smtphost] = "192.168.1.10";
++$tutos[smtphost] = "127.0.0.1";
  #
  # Fax features
  #

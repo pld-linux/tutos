@@ -2,7 +2,7 @@ Summary:	The Ultimate Team Organisation Software
 Summary(pl):	TUTOS - oprogramowanie do organizacji pracy grupowej
 Name:		tutos
 Version:	1.0.20021111
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/Databases/Interfaces
 Vendor:		Gero Kohnert <gokohnert@users.sourceforge.net>
@@ -16,7 +16,7 @@ Requires:	php-pcre
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_tutosdir	/home/httpd/html/tutos
+%define		_tutosdir	/home/services/httpd/html/services/tutos
 
 %description
 TUTOS is a webbased groupware or ERP/CRM suite that provides the users
@@ -44,6 +44,8 @@ u¿ytkownikom:
 - notatki
 - zarz±dzanie instalacj±
 - interfejs do poczty elektronicznej.
+
+TUTOS zosta³ przet³umaczony równie¿ na jêzyk polski.
 
 %prep
 %setup -q -n %{name}
@@ -86,8 +88,10 @@ if [ -f %{_sysconfdir}/httpd/httpd.conf ] && \
 fi
 if [ -f /var/lock/subsys/httpd ]; then
 	/etc/rc.d/init.d/httpd restart 1>&2
+	echo "Do not forget tu setup tutos' database!"
 else
 	echo "Run \"/etc/rc.d/init.d/httpd start\" to start apache http daemon."
+	echo "Do not forget tu setup tutos' database!"
 fi
 
 %preun
