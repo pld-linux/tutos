@@ -1,12 +1,13 @@
+%define		_beta	beta.20030205
 Summary:	The Ultimate Team Organisation Software
 Summary(pl):	TUTOS - oprogramowanie do organizacji pracy grupowej
 Name:		tutos
-Version:	1.0.20021112
-Release:	1
+Version:	1.1
+Release:	0.%{_beta}.1
 License:	GPL v2+
-Group:		Applications/Databases/Interfaces
+Group:		Applications/WWW
 Vendor:		Gero Kohnert <gokohnert@users.sourceforge.net>
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-php-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-php-%{version}%{_beta}.tar.bz2
 Patch0:		%{name}-config.patch
 URL:		http://www.tutos.org/
 PreReq:		apache
@@ -53,24 +54,32 @@ TUTOS zosta³ przet³umaczony równie¿ na jêzyk polski.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_tutosdir}/{php/{group,invoice,note,resource,watchlist},html/{help,blue,red},homepage,documentation/{user_manual,admin_manual,book0},repository},%{_sysconfdir}/httpd}
+install -d $RPM_BUILD_ROOT{%{_tutosdir}/{php/{auth,db,file,group,invoice,layout,ldap,localization,mailbox,note,resource,url,watchlist},html/{help,blue,red},homepage,documentation/{user_manual,admin_manual,book0},repository},/etc/httpd}
 
 install php/{*.{php,pinc,p3},.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/php
+install php/auth/*.pinc			$RPM_BUILD_ROOT%{_tutosdir}/php/auth
+install php/db/*.pinc			$RPM_BUILD_ROOT%{_tutosdir}/php/db
+install php/file/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/file
 install php/group/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/group
 install php/invoice/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/invoice
+install php/layout/*.pinc		$RPM_BUILD_ROOT%{_tutosdir}/php/layout
+install php/ldap/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/ldap
+install php/localization/*.{pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/localization
+install php/mailbox/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/mailbox
 install php/note/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/note
 install php/resource/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/resource
+install php/url/*.{php,pinc,p3}		$RPM_BUILD_ROOT%{_tutosdir}/php/url
 install php/watchlist/*.{php,pinc,p3}	$RPM_BUILD_ROOT%{_tutosdir}/php/watchlist
 install php/config_default.pinc		$RPM_BUILD_ROOT%{_tutosdir}/php/config.pinc
 
-install html/{*.{html,proto.*,png,gif,css},.htaccess,faxheader} $RPM_BUILD_ROOT%{_tutosdir}/html
+install html/{*.{html,proto.*,png,gif,css},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/html
 install html/help/{*.html,.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/html/help
-install html/blue/*.gif			$RPM_BUILD_ROOT%{_tutosdir}/html/blue
+install html/blue/*.{gif,png}		$RPM_BUILD_ROOT%{_tutosdir}/html/blue
 install html/red/*.gif			$RPM_BUILD_ROOT%{_tutosdir}/html/red
 
 install homepage/{*.html,.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/homepage
 
-install documentation/user_manual/*.png	$RPM_BUILD_ROOT%{_tutosdir}/documentation/admin_manual
+install documentation/user_manual/*.png	$RPM_BUILD_ROOT%{_tutosdir}/documentation/user_manual
 install documentation/admin_manual/*.png $RPM_BUILD_ROOT%{_tutosdir}/documentation/admin_manual
 install documentation/book0/*.html	$RPM_BUILD_ROOT%{_tutosdir}/documentation/book0
 
@@ -107,7 +116,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README ToDo ChangeLog
+%doc README README.ldap ToDo ChangeLog
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd/tutos.conf
 %dir %{_tutosdir}
 %attr(755,root,root) %{_tutosdir}/*.sh
