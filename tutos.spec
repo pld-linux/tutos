@@ -1,5 +1,3 @@
-# TODO:
-# - fix pre/post to conform apache2
 Summary:	The Ultimate Team Organisation Software
 Summary(pl):	TUTOS - oprogramowanie do organizacji pracy grupowej
 Name:		tutos
@@ -11,6 +9,7 @@ Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/tutos/%{_realname}-php-%{version}.tar.bz2
 # Source0-md5:	1b4ad35195e30d26afcfca277d480180
 # Source0-size:	678564
+Source1:        %{name}.conf
 Patch0:		%{name}-config.patch
 URL:		http://www.tutos.org/
 PreReq:		apache
@@ -120,27 +119,32 @@ install apache.conf $RPM_BUILD_ROOT/etc/httpd/tutos.conf
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ -f /etc/httpd/httpd.conf ] && \
-    ! grep -q "^Include.*/tutos.conf" /etc/httpd/httpd.conf; then
-	echo "Include /etc/httpd/tutos.conf" >> /etc/httpd/httpd.conf
-fi
-if [ -f /var/lock/subsys/httpd ]; then
-	/etc/rc.d/init.d/httpd restart 1>&2
-	echo "Do not forget tu setup tutos' database!"
-else
-	echo "Run \"/etc/rc.d/init.d/httpd start\" to start apache http daemon."
-	echo "Do not forget tu setup tutos' database!"
+if [ -f /etc/httpd/httpd.conf ] && ! grep -q "^Include.*%{name}.conf" /etc/httpd/httpd.conf; then
+        echo "Include /etc/httpd/%{name}.conf" >> /etc/httpd/httpd.conf
+        if [ -f /var/lock/subsys/httpd ]; then
+                /usr/sbin/apachectl restart 1>&2
+        fi
+elif [ -d /etc/httpd/httpd.conf ]; then
+        ln -sf /etc/httpd/%{name}.conf /etc/httpd/httpd.conf/99_%{name}.conf
+	if [ -f /var/lock/subsys/httpd ]; then
+	        /usr/sbin/apachectl restart 1>&2
+		echo "Do not forget tu setup tutos' database!"
+	fi
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-	umask 027
-	grep -E -v "^Include.*tutos.conf" /etc/httpd/httpd.conf > \
-		/etc/httpd/httpd.conf.tmp
-	mv -f /etc/httpd/httpd.conf.tmp /etc/httpd/httpd.conf
-	if [ -f /var/lock/subsys/httpd ]; then
-		/etc/rc.d/init.d/httpd restart 1>&2
-	fi
+        umask 027
+        if [ -d /etc/httpd/httpd.conf ]; then
+            rm -f /etc/httpd/httpd.conf/99_%{name}.conf
+        else
+                grep -v "^Include.*%{name}.conf" /etc/httpd/httpd.conf > \
+                        /etc/httpd/httpd.conf.tmp
+                mv -f /etc/httpd/httpd.conf.tmp /etc/httpd/httpd.conf
+        fi
+        if [ -f /var/lock/subsys/httpd ]; then
+            /usr/sbin/apachectl restart 1>&2
+        fi
 fi
 
 %files
