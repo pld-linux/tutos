@@ -9,7 +9,7 @@ Version:	1.1.20040414
 Release:	2
 License:	GPL v2+
 Group:		Applications/WWW
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-php-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/tutos/%{name}-php-%{version}.tar.bz2
 # Source0-md5:	b848ecdbcd7de75e8600bf365e20ff6d
 Patch0:		%{name}-config.patch
 URL:		http://www.tutos.org/
@@ -129,8 +129,8 @@ fi
 %{_tutosdir}/documentation
 %dir %{_tutosdir}/php
 %{_tutosdir}/php/.htaccess
-%{_tutosdir}/php/[^c]*
-%{_tutosdir}/php/c[^o]*
-%{_tutosdir}/php/co[^n]*
+%{_tutosdir}/php/[!c]*
+%{_tutosdir}/php/c[!o]*
+%{_tutosdir}/php/co[!n]*
 %{_tutosdir}/php/config_default.pinc
 %attr(640,root,http) %config(noreplace) %verify(not size mtime md5) %{_tutosdir}/php/config.pinc
