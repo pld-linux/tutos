@@ -18,7 +18,7 @@ Requires:	php-pcre
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_tutosdir	/home/services/httpd/html/tutos
+%define		_tutosdir	/home/httpd/html/tutos
 
 %description
 TUTOS is a webbased groupware or ERP/CRM suite that provides the users
