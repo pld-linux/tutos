@@ -1,5 +1,7 @@
 # TODO:
 # - move it to /usr/share
+# - SECURITY: http://securitytracker.com/alerts/2004/Sep/1011363.html
+# - fix pre/post to conform apache2
 Summary:	The Ultimate Team Organisation Software
 Summary(pl):	TUTOS - oprogramowanie do organizacji pracy grupowej
 Name:		tutos
