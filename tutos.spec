@@ -85,15 +85,15 @@ install documentation/book0/*.html	$RPM_BUILD_ROOT%{_tutosdir}/documentation/boo
 
 install *.sh $RPM_BUILD_ROOT%{_tutosdir}
 
-install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/httpd/tutos.conf
+install apache.conf $RPM_BUILD_ROOT/etc/httpd/tutos.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ -f %{_sysconfdir}/httpd/httpd.conf ] && \
-    ! grep -q "^Include.*/tutos.conf" %{_sysconfdir}/httpd/httpd.conf; then
-	echo "Include /etc/httpd/tutos.conf" >> %{_sysconfdir}/httpd/httpd.conf
+if [ -f /etc/httpd/httpd.conf ] && \
+    ! grep -q "^Include.*/tutos.conf" /etc/httpd/httpd.conf; then
+	echo "Include /etc/httpd/tutos.conf" >> /etc/httpd/httpd.conf
 fi
 if [ -f /var/lock/subsys/httpd ]; then
 	/etc/rc.d/init.d/httpd restart 1>&2
@@ -106,9 +106,9 @@ fi
 %preun
 if [ "$1" = "0" ]; then
 	umask 027
-	grep -E -v "^Include.*tutos.conf" %{_sysconfdir}/httpd/httpd.conf > \
-		%{_sysconfdir}/httpd/httpd.conf.tmp
-	mv -f %{_sysconfdir}/httpd/httpd.conf.tmp %{_sysconfdir}/httpd/httpd.conf
+	grep -E -v "^Include.*tutos.conf" /etc/httpd/httpd.conf > \
+		/etc/httpd/httpd.conf.tmp
+	mv -f /etc/httpd/httpd.conf.tmp /etc/httpd/httpd.conf
 	if [ -f /var/lock/subsys/httpd ]; then
 		/etc/rc.d/init.d/httpd restart 1>&2
 	fi
@@ -117,7 +117,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README README.ldap ToDo ChangeLog
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd/tutos.conf
+%config(noreplace) %verify(not size mtime md5) /etc/httpd/tutos.conf
 %dir %{_tutosdir}
 %attr(755,root,root) %{_tutosdir}/*.sh
 %attr(775,root,http) %{_tutosdir}/repository
