@@ -1,15 +1,14 @@
 # TODO:
-# - SECURITY: http://securitytracker.com/alerts/2004/Apr/1009750.html
+# - move it to /usr/share
 Summary:	The Ultimate Team Organisation Software
 Summary(pl):	TUTOS - oprogramowanie do organizacji pracy grupowej
 Name:		tutos
-Version:	1.1.20030715
+Version:	1.1.20040414
 Release:	0.1
 License:	GPL v2+
 Group:		Applications/WWW
-Vendor:		Gero Kohnert <gokohnert@users.sourceforge.net>
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-php-%{version}.tar.bz2
-# Source0-md5:	03c13ad482a398539ce53f7037dbfa30
+# Source0-md5:	b848ecdbcd7de75e8600bf365e20ff6d
 Patch0:		%{name}-config.patch
 URL:		http://www.tutos.org/
 PreReq:		apache
