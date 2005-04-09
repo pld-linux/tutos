@@ -2,12 +2,12 @@ Summary:	The Ultimate Team Organisation Software
 Summary(pl):	TUTOS - oprogramowanie do organizacji pracy grupowej
 Name:		tutos
 %define		_realname	TUTOS
-Version:	1.2.20040906
-Release:	0.2
+Version:	1.2.20050306
+Release:	0.1
 License:	GPL v2+
 Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/tutos/%{_realname}-php-%{version}.tar.bz2
-# Source0-md5:	1b4ad35195e30d26afcfca277d480180
+# Source0-md5:	45febad16ed94206fdb61817e82114c4
 Patch0:		%{name}-config.patch
 URL:		http://www.tutos.org/
 PreReq:		apache
@@ -54,12 +54,13 @@ TUTOS zosta³ przet³umaczony równie¿ na jêzyk polski.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_tutosdir}/php/{auth,bugtracking/{help,templates},db,file/help,group/help,invoice/help,layout,ldap/help,localization,mailbox/help,note/{help,templates},rate/help,reminder/{help,templates},resource/help,url/help,watchlist/{help,templates},xml} \
+install -d $RPM_BUILD_ROOT%{_tutosdir}/php/{admin,auth,bugtracking/{help,templates},db,file/help,group/help,installation/help,invoice/help,layout,ldap/help,localization,mailbox/help,note/{help,templates},rate/help,reminder/{help,templates},resource/help,url/help,watchlist/{help,templates},xml} \
 	$RPM_BUILD_ROOT%{_tutosdir}/html/{blue,help,nuke,red} \
 	$RPM_BUILD_ROOT%{_tutosdir}/{homepage,repository} \
 	$RPM_BUILD_ROOT{%{_tutosdir}/libs/{excel,fpdf/{font,tutorial}},/etc/httpd}
 
 install php/{*.{php,pinc,p3},.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/php
+install php/*.{php,pinc,p3}		$RPM_BUILD_ROOT%{_tutosdir}/php/admin
 install php/auth/*.pinc			$RPM_BUILD_ROOT%{_tutosdir}/php/auth
 install php/bugtracking/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/bugtracking
 install php/bugtracking/help/{*.html,.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/php/bugtracking/help
@@ -69,6 +70,8 @@ install php/file/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/fil
 install php/file/help/{*.html,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/file/help
 install php/group/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/group
 install php/group/help/{*.html,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/group/help
+install php/invoice/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/installation
+install php/invoice/help/{*.html,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/installation/help
 install php/invoice/{*.{php,pinc,p3},.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/php/invoice
 install php/invoice/help/{*.html,.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/invoice/help
 install php/layout/*.pinc		$RPM_BUILD_ROOT%{_tutosdir}/php/layout
