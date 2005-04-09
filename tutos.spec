@@ -60,7 +60,7 @@ install -d $RPM_BUILD_ROOT%{_tutosdir}/php/{admin,auth,bugtracking/{help,templat
 	$RPM_BUILD_ROOT{%{_tutosdir}/libs/{excel,fpdf/{font,tutorial}},/etc/httpd}
 
 install php/{*.{php,pinc,p3},.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/php
-install php/*.{php,pinc,p3}		$RPM_BUILD_ROOT%{_tutosdir}/php/admin
+install php/admin/*.{php,pinc,p3}		$RPM_BUILD_ROOT%{_tutosdir}/php/admin
 install php/auth/*.pinc			$RPM_BUILD_ROOT%{_tutosdir}/php/auth
 install php/bugtracking/{*.{php,pinc,p3},.htaccess} $RPM_BUILD_ROOT%{_tutosdir}/php/bugtracking
 install php/bugtracking/help/{*.html,.htaccess}	$RPM_BUILD_ROOT%{_tutosdir}/php/bugtracking/help
