@@ -10,9 +10,9 @@ Source0:	http://dl.sourceforge.net/tutos/%{_realname}-php-%{version}.tar.bz2
 # Source0-md5:	45febad16ed94206fdb61817e82114c4
 Patch0:		%{name}-config.patch
 URL:		http://www.tutos.org/
-PreReq:		apache
 Requires(post,preun):	grep
 Requires(preun):	fileutils
+Requires:	apache
 Requires:	php-pcre
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -151,7 +151,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog README README.ldap README.nuke ToDo
-%config(noreplace) %verify(not size mtime md5) /etc/httpd/%{name}.conf
+%config(noreplace) %verify(not md5 mtime size) /etc/httpd/%{name}.conf
 %dir %{_tutosdir}
 %attr(755,root,root) %{_tutosdir}/*.sh
 %attr(775,root,http) %{_tutosdir}/repository
@@ -164,4 +164,4 @@ fi
 %{_tutosdir}/php/c[!o]*
 %{_tutosdir}/php/co[!n]*
 %{_tutosdir}/php/config_default.pinc
-%attr(640,root,http) %config(noreplace) %verify(not size mtime md5) %{_tutosdir}/php/config.php
+%attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_tutosdir}/php/config.php
