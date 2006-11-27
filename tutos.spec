@@ -1,7 +1,9 @@
+# TODO
+# - webapps
+%define		_realname	TUTOS
 Summary:	The Ultimate Team Organisation Software
 Summary(pl):	TUTOS - oprogramowanie do organizacji pracy grupowej
 Name:		tutos
-%define		_realname	TUTOS
 Version:	1.2.20050306
 Release:	0.1
 License:	GPL v2+
@@ -13,7 +15,7 @@ URL:		http://www.tutos.org/
 Requires(post,preun):	grep
 Requires(preun):	fileutils
 Requires:	apache
-Requires:	php-pcre
+Requires:	php(pcre)
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
