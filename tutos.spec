@@ -2,7 +2,7 @@
 # - webapps
 %define		_realname	TUTOS
 Summary:	The Ultimate Team Organisation Software
-Summary(pl.UTF-8):   TUTOS - oprogramowanie do organizacji pracy grupowej
+Summary(pl.UTF-8):	TUTOS - oprogramowanie do organizacji pracy grupowej
 Name:		tutos
 Version:	1.2.20050306
 Release:	0.1
