@@ -2,7 +2,7 @@
 # - webapps
 %define		_realname	TUTOS
 Summary:	The Ultimate Team Organisation Software
-Summary(pl):	TUTOS - oprogramowanie do organizacji pracy grupowej
+Summary(pl.UTF-8):   TUTOS - oprogramowanie do organizacji pracy grupowej
 Name:		tutos
 Version:	1.2.20050306
 Release:	0.1
@@ -34,21 +34,21 @@ with:
 - installation management
 - mail interface
 
-%description -l pl
+%description -l pl.UTF-8
 TUTOS (The Ultimate Team Organisation Software) jest opartym na WWW
-oprogramowaniem do pracy grupowej (ERP/CRM), udostêpniaj±cym
-u¿ytkownikom:
+oprogramowaniem do pracy grupowej (ERP/CRM), udostÄ™pniajÄ…cym
+uÅ¼ytkownikom:
 - osobiste i grupowe kalendarze
-- ksi±¿kê adresow±
-- zarz±dzanie projektami
-- zarz±dzanie plikami
-- zarz±dzanie zadaniami
-- ¶ledzenie b³êdów
+- ksiÄ…Å¼kÄ™ adresowÄ…
+- zarzÄ…dzanie projektami
+- zarzÄ…dzanie plikami
+- zarzÄ…dzanie zadaniami
+- Å›ledzenie bÅ‚Ä™dÃ³w
 - notatki
-- zarz±dzanie instalacj±
+- zarzÄ…dzanie instalacjÄ…
 - interfejs do poczty elektronicznej.
 
-TUTOS zosta³ przet³umaczony równie¿ na jêzyk polski.
+TUTOS zostaÅ‚ przetÅ‚umaczony rÃ³wnieÅ¼ na jÄ™zyk polski.
 
 %prep
 %setup -q -n %{name}
